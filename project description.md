@@ -16,7 +16,7 @@ The intended purpose of this Python script is to perform data analysis on transa
 
 1. **Database Connection**
    - **Objective**: Create a connection to the local database using SQLAlchemy.
-   - 
+
 2. **Time-Based Analysis**
    - **Objective**: Perform time-based analysis of sales data.
    - **Reading Data**: Read `project_transactions.csv` file into a DataFrame.
