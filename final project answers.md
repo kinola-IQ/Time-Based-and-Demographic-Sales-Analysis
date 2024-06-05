@@ -1,35 +1,61 @@
- ------------key objectives--------------
- 1. Read in data from multiple csv files
- 2. Explore the data(millions of rows!)
- 3. join multiple Dataframes
- 4. create new columns to aid in analysis
- 5. Filter, sort and aggregate the data to pinpoint and summarize important information
- 6. Work with datetime fields to analyze the time series
- 7. Build ploys to communicate key insights
- 8. Optimize the import workflow
- 9. Write out summary tables for stakeholders
+## Time-Based and Demographic Sales Analysis
 
-- Task 1
-	- read in the transactions data
-	- read in the only columns ``household key``,``basket_id``,``day``,``product_id``,``quantity``,and``sales_value``.
-	- convert ``day``,``quantity`` and ``product_id`` to the smallest appropriate integer types
+### Intended Purpose
 
-- Task 2(TIME BASED ANALYSIS)
-	- plot the sum of sales by month, are sales growing over time?
-	- next, plot the same series after filtering down to the dates April 2016 and October 2017
-	- then, plot the sum of monthly sales in 2016 vs the monthly sales 2017,
-	- finally, plot total sales by the day of the week
+The intended purpose of this Python script is to perform data analysis on transaction and demographic data, specifically focusing on time-based and demographic analyses, and to store the results in a local database. This involves creating connections to a local database, data manipulation, generating visualizations, and storing the results.
 
-- Task 3(DEMOGRAPHICS)
-	- Read in the ``hh_demographic.csv`` file, but only the columns ``age_desc``,``income_desc``,``household_key``,and ``ee_comp_desc``.Convert the appropriate columns to the category dtype.
-	- then group the transactions table by ``household_id`` and calculate the sum of ``sales_value`` by household
-	- once you've done that, join the demographics dataframe to the aggregated transactions table. Since we're interested in analyzing the demographic data we have, make sure not to include rows for transactions that don't match.
-	- plot the sum of sales by ``age_desc`` and ``income_desc``(in separate charts).
-	- then, create the pivot table of the mean households sales by ``age_desc`` and ``ee_comp_desc``. Which of our demographics have the highest average sales? 
+### Key Objectives
 
-- Task 3(PRODUCT DEMOGRAPHICS)
-	- read in the ``product.csv file``
-	- only read in ``product_id`` and department from product(consider converting columns)
-	- Join the product dataframe  to transactions and demographics tables, performing an inner join when joining both tables.
-	- finally, pivot the fully joined dataframe by ``age_desc`` and ``department``,calculating the sum of sales. Which category does our youngest demographic perform well in.
-	- export to excel file or csv file
+1. **Database Connection**: Establish a connection to a local database using SQLAlchemy.
+2. **Time-Based Analysis**: Analyze sales data over time.
+3. **Demographic Analysis**: Analyze sales data based on demographic attributes.
+4. **Product Demographic Analysis**: Analyze product sales data by demographic attributes.
+5. **Data Storage**: Store the results of the analysis in a local database and export to flat files.
+
+### Section Objectives
+
+1. **Database Connection**
+   - **Objective**: Create a connection to the local database using SQLAlchemy.
+   - 
+2. **Time-Based Analysis**
+   - **Objective**: Perform time-based analysis of sales data.
+   - **Reading Data**: Read `project_transactions.csv` file into a DataFrame.
+   - **Creating Date Index**: Convert `DAY` column to date and set as index.
+   - **Sales Over Time**: Plot the sum of sales by month and compare sales between 2016 and 2017.
+   - **Sales by Weekday**: Plot total sales by day of the week.
+   - 
+3. **Demographic Analysis**
+   - **Objective**: Analyze sales data based on demographic attributes.
+   - **Reading Data**: Read `hh_demographic.csv` file into a DataFrame.
+   - **Group by Household**: Calculate the sum of sales by household.
+   - **Join with Demographics**: Merge sales data with demographic data.
+   - **Plotting**: Plot sum of sales by `AGE_DESC` and `INCOME_DESC`.
+   - **Handling Missing Data**: Drop rows with missing values in relevant columns.
+   - **Create New Columns**: Define conditions and create new columns for age, income, and homeowner status.
+   - **Convert to Numeric**: Convert new columns to numeric, coercing errors to NaN.
+   - **Drop NaN Values**: Drop rows with NaN values in new columns.
+   - **Scatter Plot**: Create a scatter plot based on the new columns.
+   - **Pivot Table**: Create a pivot table of mean household sales by `AGE_DESC` and `HH_COMP_DESC`.
+   - **Heatmap**: Generate and save a heatmap of the pivot table.
+
+4. **Product Demographic Analysis**
+   - **Objective**: Analyze product sales data by demographic attributes.
+   - **Reading Data**: Read `product.csv` file into a DataFrame.
+   - **Join DataFrames**: Join product data with transaction and demographic data.
+   - **Handle Missing Values**: Replace missing values in `DEPARTMENT` and fill NaN values in `SALES_VALUE`.
+   - **Pivot Table**: Create a pivot table of sales by `AGE_DESC` and `DEPARTMENT`.
+   - **Heatmap**: Generate and save a heatmap of the pivot table.
+
+5. **Data Storage**
+   - **Objective**: Store the results of the analysis in a local database and export to flat files.
+   - **Database Storage**: Store merged data into the local database.
+   - **Export to Excel**: Export the pivot table to an Excel file.
+   - **Export to CSV**: Export the pivot table to a CSV file.
+ 
+### Key Takeaways
+
+- **Comprehensive Analysis**: The script covers both time-based and demographic analyses, providing insights into sales trends and demographic patterns.
+- **Memory Optimization**: Data types are optimized for memory efficiency during the data reading process.
+- **Interim Verification Steps**: Print statements and plots are included to verify intermediate results, ensuring accuracy at each step.
+- **Use of Visualizations**: The script uses visualizations to convey the results of the analysis effectively.
+- **Data Storage**: The script includes functionality to store the results in a database and export to flat files, ensuring that the analysis can be saved and shared easily.
