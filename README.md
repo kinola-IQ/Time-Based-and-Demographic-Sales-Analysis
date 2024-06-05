@@ -1,4 +1,7 @@
-essentially, the main aim here is to 
+Time-Based and Demographic Sales Analysis
+
+key objectives
+
  1. Read in data from multiple csv files
  2. Explore the data(millions of rows!)
  3. join multiple Dataframes
