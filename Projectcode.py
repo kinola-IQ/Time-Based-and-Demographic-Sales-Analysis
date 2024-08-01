@@ -147,20 +147,6 @@ Agedemo_heat.to_html(demo_html)
 
 '''______________________________________________storage section_______________________________________________'''
 #section to store summary table in local database and flat files
-# conn = pyodbc.connect(
-#     'DRIVER = {ODBC DRIVER 17 FOR SQL SERVER};\
-#     SERVER= localhost;\
-#     DATABASE= master ;\
-#     trusted_connection = yes'
-#     )
-
-# cursor = conn.cursor()
-
-# cursor.execute("CREATE DATABASE final_project")
-
-# conn.commit()
-# cursor.close()
-# conn.close()
 
 #storing merged data into local database
 proTran_sqltable = proTran.to_sql(
